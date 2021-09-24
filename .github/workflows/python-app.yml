@@ -33,7 +33,4 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Test with pytest
       run: |
-        #echo ${{ env.CONFIG }} > config.gsil.cfg
-        #echo ${{ env.RULES }} > rules.gsil.yaml
-        #python3 gsil.py ohdat
         curl http://www.baidu.com
