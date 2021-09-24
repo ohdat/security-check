@@ -5,6 +5,7 @@ name: Python application
 
 env:
   CONFIG: ${{  secrets.CONFIG }}
+  RULES: ${{  secrets.RULES }}
 
 on:
   workflow_dispatch:
@@ -34,4 +35,5 @@ jobs:
     - name: Test with pytest
       run: |
         echo ${{ env.CONFIG }} > config.gsil.cfg
-        cat ./config.gsil.cfg
+        echo ${{ env.RULES }} > rules.gsil.yaml
+        python3 gsil.py ohdat
