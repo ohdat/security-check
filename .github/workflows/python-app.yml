@@ -3,6 +3,9 @@
 
 name: Python application
 
+env:
+  CONFIG: ${{  secrets.CONFIG }}
+
 on:
   workflow_dispatch:
 
@@ -30,4 +33,5 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Test with pytest
       run: |
-        pytest
+        echo ${{ env.CONFIG }} > config.gsil.cfg
+        cat ./config.gsil.cfg
