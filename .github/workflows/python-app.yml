@@ -41,6 +41,4 @@ jobs:
         EOF
     - name: run python
       run: |
-        cat config.gsil.cfg
-        cat rules.gsil.yaml
-        ls
+        python3 gsil.py ohdat
