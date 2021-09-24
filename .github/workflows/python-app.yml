@@ -33,8 +33,12 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: set files
       run: |
-        sed -e "s/${{ env.CONFIG }}/sss/g"  ./config.gsil.cfg
-        sed -e "s/${{ env.RULES }}/sss/g"  ./rules.gsil.yaml
+        cat >> ./config.gsil.cfg <<EOF
+        ${{ env.CONFIG }}
+        EOF
+        cat >> ./rules.gsil.yaml <<EOF
+        ${{ env.RULES }}
+        EOF
     - name: run python
       run: |
         cat config.gsil.cfg
