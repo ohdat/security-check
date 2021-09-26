@@ -178,10 +178,10 @@ class Engine(object):
             return False, self.rule_object, msg
 
         #logger.info(
-            f'[{self.rule_object.keyword}] Speed Limit Results (Remaining Times / Total Times): {rate_limiting}  Speed limit reset time: {rate_limiting_reset_time}')
+        #    f'[{self.rule_object.keyword}] Speed Limit Results (Remaining Times / Total Times): {rate_limiting}  Speed limit reset time: {rate_limiting_reset_time}')
         #logger.info(
-            '[{k}] The expected number of acquisitions: {page}(Pages) * {per}(Per Page) = {total}(Total)'.format(
-                k=self.rule_object.keyword, page=default_pages, per=per_page, total=default_pages * per_page))
+        #    '[{k}] The expected number of acquisitions: {page}(Pages) * {per}(Per Page) = {total}(Total)'.format(
+        #        k=self.rule_object.keyword, page=default_pages, per=per_page, total=default_pages * per_page))
 
         # RATE_LIMIT_REQUEST: rules * 1
         try:
