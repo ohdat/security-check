@@ -69,7 +69,7 @@ def start(rule_types):
     logger.info(f'rules length: {len(rules)}')
     pool = multiprocessing.Pool()
     for idx, rule_object in enumerate(rules):
-        logger.info(f'>>>>>>>>>>>>> {rule_object.corp} > {rule_object.keyword} >>>>>>')
+        #logger.info(f'>>>>>>>>>>>>> {rule_object.corp} > {rule_object.keyword} >>>>>>')
         pool.apply_async(search, args=(idx, rule_object), callback=store_result)
     pool.close()
     pool.join()
