@@ -169,9 +169,8 @@ class Engine(object):
             if self.rule_object.extension is not None:
                 for ext in self.rule_object.extension.split(','):
                     ext_query += f'extension:{ext.strip().lower()} '
-            #keyword = f'{self.rule_object.keyword} {ext_query}'
-            keyword = "*********"
-            logger.info(f'Search keyword: {keyword}')
+            keyword = f'{self.rule_object.keyword} {ext_query}'
+            #logger.info(f'Search keyword: {keyword}')
             resource = self.g.search_code(keyword, sort="indexed", order="desc")
         except GithubException as e:
             msg = f'GitHub [search_code] exception(code: {e.status} msg: {e.data} {self.token}'
