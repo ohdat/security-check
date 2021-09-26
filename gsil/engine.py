@@ -223,7 +223,7 @@ class Engine(object):
             # Process(self.exclude_result, self.rule_object).process(True)
 
         #logger.info(
-            f'[{self.rule_object.keyword}] The current rules are processed, the process of normal exit!')
+        #    f'[{self.rule_object.keyword}] The current rules are processed, the process of normal exit!')
         return True, self.rule_object, len(self.result)
 
     def codes(self):
