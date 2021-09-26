@@ -124,7 +124,7 @@ class Engine(object):
                 'path': self.path,
             }
             if self._exclude_codes(match_codes):
-                logger.info(f'{base_info} Code may be useless, do not skip, add to list to be reviewed!')
+                #logger.info(f'{base_info} Code may be useless, do not skip, add to list to be reviewed!')
                 self.exclude_result[current_i] = result
             else:
                 self.result[current_i] = result
@@ -132,7 +132,7 @@ class Engine(object):
             # 独立进程下载代码
             git_url = content.repository.html_url
             clone(git_url, self.sha)
-            logger.info(f'{base_info} Processing is complete, the next one!')
+            #logger.info(f'{base_info} Processing is complete, the next one!')
             self.next_count += 1
 
         return True
@@ -170,23 +170,23 @@ class Engine(object):
                 for ext in self.rule_object.extension.split(','):
                     ext_query += f'extension:{ext.strip().lower()} '
             keyword = f'{self.rule_object.keyword} {ext_query}'
-            logger.info(f'Search keyword: {keyword}')
+            #logger.info(f'Search keyword: {keyword}')
             resource = self.g.search_code(keyword, sort="indexed", order="desc")
         except GithubException as e:
             msg = f'GitHub [search_code] exception(code: {e.status} msg: {e.data} {self.token}'
             logger.critical(msg)
             return False, self.rule_object, msg
 
-        logger.info(
+        #logger.info(
             f'[{self.rule_object.keyword}] Speed Limit Results (Remaining Times / Total Times): {rate_limiting}  Speed limit reset time: {rate_limiting_reset_time}')
-        logger.info(
+        #logger.info(
             '[{k}] The expected number of acquisitions: {page}(Pages) * {per}(Per Page) = {total}(Total)'.format(
                 k=self.rule_object.keyword, page=default_pages, per=per_page, total=default_pages * per_page))
 
         # RATE_LIMIT_REQUEST: rules * 1
         try:
             total = resource.totalCount
-            logger.info(f'[{self.rule_object.keyword}] The actual number: {total}')
+            #logger.info(f'[{self.rule_object.keyword}] The actual number: {total}')
         except socket.timeout as e:
             return False, self.rule_object, e
         except GithubException as e:
@@ -206,7 +206,7 @@ class Engine(object):
                 # RATE_LIMIT_REQUEST: pages * rules * 1
                 pages_content = resource.get_page(page)
             except socket.timeout:
-                logger.info(f'[{self.rule_object.keyword}] [get_page] Time out, skip to get the next page！')
+                #logger.info(f'[{self.rule_object.keyword}] [get_page] Time out, skip to get the next page！')
                 continue
             except GithubException as e:
                 msg = f'GitHub [get_page] exception(code: {e.status} msg: {e.data} {self.token}'
@@ -222,7 +222,7 @@ class Engine(object):
             # 暂时不发送可能存在的误报 TODO
             # Process(self.exclude_result, self.rule_object).process(True)
 
-        logger.info(
+        #logger.info(
             f'[{self.rule_object.keyword}] The current rules are processed, the process of normal exit!')
         return True, self.rule_object, len(self.result)
 
