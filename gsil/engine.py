@@ -213,7 +213,7 @@ class Engine(object):
                 logger.critical(msg)
                 return False, self.rule_object, msg
 
-            logger.info(f'[{self.rule_object.keyword}] Get page {page} data for {len(pages_content)}')
+            #logger.info(f'[{self.rule_object.keyword}] Get page {page} data for {len(pages_content)}')
             if not self.process_pages(pages_content, page, total):
                 # 若遇到处理过的，则跳过整个规则
                 break
