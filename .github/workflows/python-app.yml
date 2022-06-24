@@ -7,15 +7,15 @@ env:
   CONFIG: ${{  secrets.CONFIG }}
   RULES: ${{  secrets.RULES }}
 
-#on:
-#  schedule:
-#    - cron:  '0 0 * * *'
-
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  schedule:
+    - cron:  '0 0 * * *'
+
+#on:
+#  push:
+#    branches: [ master ]
+#  pull_request:
+#    branches: [ master ]
 
 jobs:
   build:
